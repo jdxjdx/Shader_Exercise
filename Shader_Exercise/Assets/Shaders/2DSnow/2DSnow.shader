@@ -21,6 +21,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "../ShaderLibs/Hash.cginc"
 
             float _Size;
             float _XSpeed;
@@ -38,24 +39,6 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            
-            //随机函数
-            //  1 out, 1 in...
-            float Hash11(float p)
-            {
-	            float3 p3  = frac(p.xxx * .1031);
-                p3 += dot(p3, p3.yzx + 19.19);
-                return frac((p3.x + p3.y) * p3.z); 
-            }
-            
-            //随机函数
-            ///  2 out, 2 in...
-            float2 Hash22(float2 p)
-            {
-	            float3 p3 = frac(float3(p.xyx) * float3(.1031, .1030, .0973));
-                p3 += dot(p3, p3.yzx+19.19);
-                return frac((p3.xx+p3.yz)*p3.zy);
-            }
 
             v2f vert (appdata v)
             {
