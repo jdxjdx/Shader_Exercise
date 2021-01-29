@@ -4,10 +4,6 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Speed ("Speed", float) = 10
-        
-        period ("period", float) = 1.//peroid
-        spreadSpd ("spreadSpd", float) = 1.//wave move speed
-        waveGap ("waveGap", float) = 0.2//single wave 's width
     }
     SubShader
     {
@@ -34,10 +30,6 @@
             
             sampler2D _MainTex; float4 _MainTex_ST;
             float _Speed;
-            float period ;//peroid
-            float spreadSpd;//wave move speed
-            float waveGap;//single wave 's width
-            
             
             v2f vert (appdata v)
             {
