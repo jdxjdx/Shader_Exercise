@@ -5,7 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
         _DissTex("Dissolve Texture", 2D) = "white"{}
         
-         _DissolveCenterUV("Dissolve Center UV", Vector) = (0,1,0)
+        _DissolveCenterUV("Dissolve Center UV", Vector) = (0,1,0)
         _WorldSpaceScale("World Space Dissolve Factor", float) = 0.1
         
         _EdgeWidth("Edge Wdith", Range(0, 1)) = 0
