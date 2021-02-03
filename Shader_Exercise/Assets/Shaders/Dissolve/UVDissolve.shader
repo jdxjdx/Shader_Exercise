@@ -8,9 +8,10 @@
          _DissolveCenterUV("Dissolve Center UV", Vector) = (0,1,0)
         _WorldSpaceScale("World Space Dissolve Factor", float) = 0.1
         
-        _EdgeWidth("Edge Wdith", float) = 0
-		[HDR]_DlvEdgeColor("Dissolve Edge Color", Color) = (0.0, 0.0, 0.0, 0)
+        _EdgeWidth("Edge Wdith", Range(0, 1)) = 0
         _Smoothness("Smoothness", Range(0.001, 1)) = 0.2
+        
+        [HDR]_DlvEdgeColor("Dissolve Edge Color", Color) = (0.0, 0.0, 0.0, 0)
         
         _Clip("Clip", float) = 1
     }
@@ -68,8 +69,8 @@
 				dissove = dissove + dist * _WorldSpaceScale;//根据距离和噪声纹理计算
 				float dissolve_alpha = step(_Clip, dissove);
 				clip(dissolve_alpha - 0.5);
-                float colorLerp = smoothstep(0, _Smoothness, saturate(dissove - _Clip - _EdgeWidth));
-                col.rgb = lerp(_DlvEdgeColor, col.rgb , colorLerp);
+                float colorLerp = smoothstep(0, _Smoothness, saturate(_Clip - dissove + _EdgeWidth));
+                col.rgb = lerp(col.rgb, _DlvEdgeColor, colorLerp);
                 return col;
             }
             ENDCG
