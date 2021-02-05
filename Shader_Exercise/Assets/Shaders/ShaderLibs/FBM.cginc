@@ -5,7 +5,7 @@
 #define FMST_FBM
 
 #include "Noise.cginc"
-
+#include "Math.cginc"
 
 float FBM( float2 p )
 {
