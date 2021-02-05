@@ -29,18 +29,6 @@
                 float4 vertex : SV_POSITION;
             };
 
-            // float VNoise(float2 p)
-            // {
-            //     float2 pi = floor(p);
-            //     float2 pf = p - pi;
-            //     
-            //     float2 w = pf * pf * (3.0 - 2.0 * pf);
-            //     
-            //     return lerp(lerp(Hash12(pi + float2(0.0, 0.0)), Hash12(pi + float2(1.0, 0.0)), w.x),
-            //                lerp(Hash12(pi + float2(0.0, 1.0)), Hash12(pi + float2(1.0, 1.0)), w.x),
-            //                w.y);
-            // }
-
             v2f vert (appdata v)
             {
                 v2f o;
