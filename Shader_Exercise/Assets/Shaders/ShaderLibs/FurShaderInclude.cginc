@@ -9,18 +9,18 @@ float4 _Noise_ST;
 
 fixed4 _Color;
 fixed4 _Specular;
-half _Shininess;
+fixed _Shininess;
 
-float _FurLength;
-float _FurRadius;
+fixed _FurLength;
+fixed _FurRadius;
 fixed _FurThinness;
+fixed _Timing;
 
-float _OcclusionPower;
-float4 _OcclusionColor;
-float2 _UVOffset;
+fixed _OcclusionPower;
+fixed4 _OcclusionColor;
 
-float4 _ForceGlobal;
-float4 _ForceLocal;
+fixed4 _ForceGlobal;
+fixed4 _ForceLocal;
 
 struct appdata
 {
@@ -90,7 +90,9 @@ v2f vert (appdata v)
 float4 frag(v2f i) : SV_Target{
     fixed3 albedo = tex2D(_MainTex,i.uv).rgb;
     fixed3 noise = tex2D(_Noise, i.noise * _FurThinness).rgb;
-    fixed alpha = saturate(noise - FURSTEP * FURSTEP * _FurRadius);
+    //fixed alpha = saturate(noise - FURSTEP * _FurRadius);//==线性变化模拟不够真实 参考https://zhuanlan.zhihu.com/p/122405983
+    //fixed alpha = saturate(noise - FURSTEP * FURSTEP * _FurRadius);
+    fixed alpha = saturate(noise.r*2 - (FURSTEP * FURSTEP + (FURSTEP * _FurRadius)) * _Timing);
     fixed3 finalColor = albedo * i.lightMul.rgb;
     return fixed4(finalColor,alpha);
 }

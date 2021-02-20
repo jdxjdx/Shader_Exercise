@@ -12,6 +12,7 @@
         _FurLength ("FurLength", float) = 0
         _FurRadius ("FurRadius", float) = 0
         _FurThinness ("FurThinness", float) = 1
+        _Timing ("Timing", float) = 1
         
         _OcclusionPower ("Occlusion Power", float) = 1
         _OcclusionColor("Occlusion Color", Color) = (0.0, 0.0, 0.0, 0)
